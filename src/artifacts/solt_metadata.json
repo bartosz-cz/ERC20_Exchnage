@@ -4,7 +4,51 @@
 	},
 	"language": "Solidity",
 	"output": {
-		"abi": [],
+		"abi": [
+			{
+				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [],
+				"name": "ClaimOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "chooseNewOwner",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "reciver",
+						"type": "address"
+					},
+					{
+						"internalType": "uint32",
+						"name": "amount",
+						"type": "uint32"
+					}
+				],
+				"name": "send",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
 		"devdoc": {
 			"kind": "dev",
 			"methods": {},
@@ -33,11 +77,11 @@
 	},
 	"sources": {
 		"src/solt.sol": {
-			"keccak256": "0xa4022587d0bca5ba30535156e2acafb74ac0e9b98b8e928827e141118538c06a",
+			"keccak256": "0xb2380aeda6ec0b65533b02dadf669384057246ec6eabea20462d0b69b32a884b",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://df5273d4f23cb63dcece023353d048d1774717343b71eb0f9960939e9aa85bc7",
-				"dweb:/ipfs/Qmc5Q3AjQv1veXMmEUPwuNXLLM5McxjbY14nnmVHaDicxp"
+				"bzz-raw://7cb89e101c5245d93eb322f8f3ba39e003ce1e6a7a3d539ac723ee64c46cafce",
+				"dweb:/ipfs/QmP6my7kkFZe12Dq4iKMEToyAqReHsMH52FT8JCPhUTAeV"
 			]
 		}
 	},
