@@ -21,6 +21,25 @@
 				"inputs": [
 					{
 						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "balances",
+				"outputs": [
+					{
+						"internalType": "uint32",
+						"name": "",
+						"type": "uint32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
 						"name": "newOwner",
 						"type": "address"
 					}
@@ -77,11 +96,11 @@
 	},
 	"sources": {
 		"src/solt.sol": {
-			"keccak256": "0xb2380aeda6ec0b65533b02dadf669384057246ec6eabea20462d0b69b32a884b",
+			"keccak256": "0x8e04f503c9552eceff9214ca1f165622434fbd245e60e518a7a7164379035b70",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://7cb89e101c5245d93eb322f8f3ba39e003ce1e6a7a3d539ac723ee64c46cafce",
-				"dweb:/ipfs/QmP6my7kkFZe12Dq4iKMEToyAqReHsMH52FT8JCPhUTAeV"
+				"bzz-raw://0ef9e216b7a6ef73f01db04689794cf79c87a5487a1d9c7eaf1292cadf566d75",
+				"dweb:/ipfs/QmbWc7XvZ6PgW2fCGkctoWkRWbJwFiPj6J2VxvVvHtFLE7"
 			]
 		}
 	},

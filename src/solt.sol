@@ -6,7 +6,7 @@ contract solt{
     address onwer;
     address nextOwner;
     uint32 coinCount = 1000000000;
-    mapping(address => uint32) balances;
+    mapping(address => uint32) public balances;
 
     constructor(){
         onwer = msg.sender;
