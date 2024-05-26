@@ -21,25 +21,6 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"name": "balances",
-				"outputs": [
-					{
-						"internalType": "uint32",
-						"name": "",
-						"type": "uint32"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
 						"name": "newOwner",
 						"type": "address"
 					}
@@ -47,6 +28,43 @@
 				"name": "chooseNewOwner",
 				"outputs": [],
 				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint32",
+						"name": "amount",
+						"type": "uint32"
+					},
+					{
+						"internalType": "uint32",
+						"name": "minCoinPrice",
+						"type": "uint32"
+					}
+				],
+				"name": "sellRequest",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "sellRequests",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -65,6 +83,57 @@
 				"name": "send",
 				"outputs": [],
 				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "users",
+				"outputs": [
+					{
+						"internalType": "uint32",
+						"name": "balance",
+						"type": "uint32"
+					},
+					{
+						"components": [
+							{
+								"internalType": "address",
+								"name": "userAddress",
+								"type": "address"
+							},
+							{
+								"internalType": "uint32",
+								"name": "amount",
+								"type": "uint32"
+							},
+							{
+								"internalType": "uint32",
+								"name": "coinPrice",
+								"type": "uint32"
+							},
+							{
+								"internalType": "uint256",
+								"name": "time",
+								"type": "uint256"
+							},
+							{
+								"internalType": "enum solt.RequestTypes",
+								"name": "Type",
+								"type": "uint8"
+							}
+						],
+						"internalType": "struct solt.userRequest",
+						"name": "Request",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			}
 		],
@@ -96,11 +165,11 @@
 	},
 	"sources": {
 		"src/solt.sol": {
-			"keccak256": "0x8e04f503c9552eceff9214ca1f165622434fbd245e60e518a7a7164379035b70",
+			"keccak256": "0x49d80884ce85aa0efe789e7a01b02561123488d351f2b5135910fee20f9adecf",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://0ef9e216b7a6ef73f01db04689794cf79c87a5487a1d9c7eaf1292cadf566d75",
-				"dweb:/ipfs/QmbWc7XvZ6PgW2fCGkctoWkRWbJwFiPj6J2VxvVvHtFLE7"
+				"bzz-raw://ba3f656becdbdaaf165462a1a3a128bedd1aed15d40dc2e85198bb640e613e23",
+				"dweb:/ipfs/QmQCXjt2w1Cu2a9bQKXQhCB2Nhoiq4ngzPJ9sZgKGGUkV7"
 			]
 		}
 	},

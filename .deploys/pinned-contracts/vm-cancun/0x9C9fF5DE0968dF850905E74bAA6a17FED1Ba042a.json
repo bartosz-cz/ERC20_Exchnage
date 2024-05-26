@@ -1,0 +1,139 @@
+{
+  "name": "solt",
+  "address": "0x9C9fF5DE0968dF850905E74bAA6a17FED1Ba042a",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "chooseNewOwner",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "ClaimOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint32",
+          "name": "amount",
+          "type": "uint32"
+        },
+        {
+          "internalType": "uint32",
+          "name": "minCoinPrice",
+          "type": "uint32"
+        }
+      ],
+      "name": "sellRequest",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "reciver",
+          "type": "address"
+        },
+        {
+          "internalType": "uint32",
+          "name": "amount",
+          "type": "uint32"
+        }
+      ],
+      "name": "send",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "sellRequests",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "users",
+      "outputs": [
+        {
+          "internalType": "uint32",
+          "name": "balance",
+          "type": "uint32"
+        },
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "userAddress",
+              "type": "address"
+            },
+            {
+              "internalType": "uint32",
+              "name": "amount",
+              "type": "uint32"
+            },
+            {
+              "internalType": "uint32",
+              "name": "coinPrice",
+              "type": "uint32"
+            },
+            {
+              "internalType": "uint256",
+              "name": "time",
+              "type": "uint256"
+            },
+            {
+              "internalType": "enum solt.RequestTypes",
+              "name": "Type",
+              "type": "uint8"
+            }
+          ],
+          "internalType": "struct solt.userRequest",
+          "name": "Request",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "filePath": "firstContrats.git/src/solt.sol",
+  "pinnedAt": 1716767476922
+}
