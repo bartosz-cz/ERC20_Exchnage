@@ -2,6 +2,7 @@
 
 pragma solidity >=0.8.2 <0.9.0;
 
+//base solt contract
 contract solt{
     address onwer;
     address nextOwner;
