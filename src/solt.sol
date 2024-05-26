@@ -13,25 +13,30 @@ contract solt{
         balances[msg.sender] = coinCount;
     }
 
+    //only allow specified address to use function
     modifier OnlyChosen(address chosen){
         require(msg.sender == chosen);
         _;
     }
 
+    //only allow users with enough coins to use this feature
     modifier isBalaceSufficient(uint32 amount){
          require(balances[msg.sender] >= amount);
          _;
     }
 
+    //select new solt owner address (old owner still owns)
     function chooseNewOwner(address newOwner) public OnlyChosen(onwer){
         nextOwner = newOwner;
     }  
 
+    //transfer ownership to the new address (old owner lost access)
     function  ClaimOwnership() public OnlyChosen(nextOwner){
         onwer = nextOwner;
         delete nextOwner;
     }
 
+    //send solt coins between addresses
     function send(address reciver, uint32 amount) public isBalaceSufficient(amount){
         balances[msg.sender] -= amount;
         balances[reciver] += amount;
