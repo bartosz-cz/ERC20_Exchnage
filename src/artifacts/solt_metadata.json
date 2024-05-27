@@ -20,6 +20,43 @@
 			{
 				"inputs": [
 					{
+						"internalType": "uint32",
+						"name": "amount",
+						"type": "uint32"
+					},
+					{
+						"internalType": "uint32",
+						"name": "coinPrice",
+						"type": "uint32"
+					}
+				],
+				"name": "buyRequest",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "buyRequestants",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "address",
 						"name": "newOwner",
 						"type": "address"
@@ -39,7 +76,7 @@
 					},
 					{
 						"internalType": "uint32",
-						"name": "minCoinPrice",
+						"name": "coinPrice",
 						"type": "uint32"
 					}
 				],
@@ -56,7 +93,7 @@
 						"type": "uint256"
 					}
 				],
-				"name": "sellRequests",
+				"name": "sellRequestants",
 				"outputs": [
 					{
 						"internalType": "address",
@@ -102,11 +139,6 @@
 					},
 					{
 						"components": [
-							{
-								"internalType": "address",
-								"name": "userAddress",
-								"type": "address"
-							},
 							{
 								"internalType": "uint32",
 								"name": "amount",
@@ -165,11 +197,11 @@
 	},
 	"sources": {
 		"src/solt.sol": {
-			"keccak256": "0x49d80884ce85aa0efe789e7a01b02561123488d351f2b5135910fee20f9adecf",
+			"keccak256": "0x345a6a0c1905ff548ed47d8ca6dfd6639b479fff468d3744f185dcaba7d2c9de",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://ba3f656becdbdaaf165462a1a3a128bedd1aed15d40dc2e85198bb640e613e23",
-				"dweb:/ipfs/QmQCXjt2w1Cu2a9bQKXQhCB2Nhoiq4ngzPJ9sZgKGGUkV7"
+				"bzz-raw://659eeba799476c5d317aba1ef3793b704c16398b9b96c0859367d6f553fa2986",
+				"dweb:/ipfs/QmYDQ5cPoR6SE3YP617uM8oSsB92rbD2wPmMbhaF6jYBbs"
 			]
 		}
 	},

@@ -1,7 +1,25 @@
 {
   "name": "solt",
-  "address": "0x9C9fF5DE0968dF850905E74bAA6a17FED1Ba042a",
+  "address": "0x688c0611a5691B7c1F09a694bf4ADfb456a58Cf7",
   "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "uint32",
+          "name": "amount",
+          "type": "uint32"
+        },
+        {
+          "internalType": "uint32",
+          "name": "coinPrice",
+          "type": "uint32"
+        }
+      ],
+      "name": "buyRequest",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
     {
       "inputs": [
         {
@@ -31,7 +49,7 @@
         },
         {
           "internalType": "uint32",
-          "name": "minCoinPrice",
+          "name": "coinPrice",
           "type": "uint32"
         }
       ],
@@ -71,7 +89,26 @@
           "type": "uint256"
         }
       ],
-      "name": "sellRequests",
+      "name": "buyRequestants",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "sellRequestants",
       "outputs": [
         {
           "internalType": "address",
@@ -99,11 +136,6 @@
         },
         {
           "components": [
-            {
-              "internalType": "address",
-              "name": "userAddress",
-              "type": "address"
-            },
             {
               "internalType": "uint32",
               "name": "amount",
@@ -135,5 +167,5 @@
     }
   ],
   "filePath": "firstContrats.git/src/solt.sol",
-  "pinnedAt": 1716767476922
+  "pinnedAt": 1716814360687
 }
