@@ -11,6 +11,168 @@
 				"type": "constructor"
 			},
 			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "NewOwnerChosed",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "NewOwnerClaimedOwnership",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "requestor",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint32",
+						"name": "amount",
+						"type": "uint32"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint32",
+						"name": "coinPrice",
+						"type": "uint32"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "time",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "enum solt.RequestTypes",
+						"name": "Type",
+						"type": "uint8"
+					}
+				],
+				"name": "PendingRequestOpened",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "requestor",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint32",
+						"name": "amount",
+						"type": "uint32"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint32",
+						"name": "coinPrice",
+						"type": "uint32"
+					},
+					{
+						"indexed": false,
+						"internalType": "enum solt.RequestTypes",
+						"name": "Type",
+						"type": "uint8"
+					}
+				],
+				"name": "RequestAccepted",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "requestor",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint32",
+						"name": "amount",
+						"type": "uint32"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint32",
+						"name": "coinPrice",
+						"type": "uint32"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "time",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "enum solt.RequestTypes",
+						"name": "Type",
+						"type": "uint8"
+					}
+				],
+				"name": "RequestFulfilled",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "requestor",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint32",
+						"name": "amount",
+						"type": "uint32"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint32",
+						"name": "coinPrice",
+						"type": "uint32"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "time",
+						"type": "uint256"
+					}
+				],
+				"name": "RequestPartiallyFulfilled",
+				"type": "event"
+			},
+			{
 				"inputs": [],
 				"name": "ClaimOwnership",
 				"outputs": [],
@@ -160,7 +322,7 @@
 								"type": "uint8"
 							}
 						],
-						"internalType": "struct solt.userRequest",
+						"internalType": "struct solt.UserRequest",
 						"name": "Request",
 						"type": "tuple"
 					}
@@ -197,11 +359,11 @@
 	},
 	"sources": {
 		"src/solt.sol": {
-			"keccak256": "0x345a6a0c1905ff548ed47d8ca6dfd6639b479fff468d3744f185dcaba7d2c9de",
+			"keccak256": "0x4aa105e069f8b0b3fe7658aa029573e051410acb1dc8cd6dfc4dadc2931a5190",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://659eeba799476c5d317aba1ef3793b704c16398b9b96c0859367d6f553fa2986",
-				"dweb:/ipfs/QmYDQ5cPoR6SE3YP617uM8oSsB92rbD2wPmMbhaF6jYBbs"
+				"bzz-raw://edd0fa5baeb9e594eef1552bc6a1d266d79efca58784750c5c2fae539103d66f",
+				"dweb:/ipfs/QmYo3gt9bDKSLotySNVebaHLXvTuZwBEteARRpWBrNWGAz"
 			]
 		}
 	},
