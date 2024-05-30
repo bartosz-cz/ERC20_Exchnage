@@ -54,19 +54,18 @@ contract ERC20 is IERC20{
     }
 
     // Function to initiate token ownership transfer, can only be called by current token owner.
-    function TransferTokenOwnership(address _nextTokenOwner) external 
+    function transferTokenOwnership(address _nextTokenOwner) external 
         allowOnly(tokenOwner)
         nonZeroAddress(_nextTokenOwner)
         returns(bool)
     {
-        require(nextTokenOwner != address(0), "Invalid new owner address");
         nextTokenOwner = _nextTokenOwner;
         emit TokenOwnershipTransferStarted(tokenOwner, nextTokenOwner);
         return true;
     }
 
     // Function to finalize token ownership transfer, can only be called by the new owner
-    function ClaimTokenOwnership() external 
+    function claimTokenOwnership() external 
         allowOnly(nextTokenOwner) 
         returns(bool)
     {
@@ -77,12 +76,9 @@ contract ERC20 is IERC20{
     }
 
     // Transfer function to move tokens between addresses
-    function transfer(address recipient, uint256 amount) external 
-        nonZeroAmount(amount)
-        nonZeroAddress(recipient)
-        sufficientBalance(msg.sender, amount) 
-        returns(bool) 
+    function transfer(address recipient, uint256 amount) external returns(bool) 
     {
+        if (amount == 0 || recipient == address(0) || balanceOf[msg.sender] < amount) return false;
         balanceOf[msg.sender]-=amount;
         balanceOf[recipient]+=amount;
         emit Transfer(msg.sender, recipient, amount);
@@ -90,13 +86,9 @@ contract ERC20 is IERC20{
     } 
     
     // TransferFrom function allowing a spender to transfer tokens, subject to approval and balance checks
-    function transferFrom(address sender, address recipient, uint256 amount) external
-        nonZeroAmount(amount)
-        nonZeroAddress(recipient)
-        sufficientBalance(sender, amount)
-        sufficientAllowance(sender, amount)
-        returns(bool)
+    function transferFrom(address sender, address recipient, uint256 amount) external returns(bool)
     {
+        if (amount == 0 || recipient == address(0) || balanceOf[sender] < amount || allowance[sender][msg.sender] < amount) return false;
         allowance[sender][msg.sender]-=amount;
         balanceOf[sender]-=amount;
         balanceOf[recipient]+=amount;
@@ -105,12 +97,9 @@ contract ERC20 is IERC20{
     }
     
     // Approve function enabling an owner to allow another address to spend a specific amount of tokens.
-    function approve(address spender, uint256 amount) external 
-        nonZeroAmount(amount)
-        nonZeroAddress(spender) 
-        sufficientBalance(msg.sender, amount) 
-        returns(bool)
+    function approve(address spender, uint256 amount) external returns(bool)
     {
+        if (amount == 0 || spender == address(0) || balanceOf[msg.sender] < amount) return false;
         allowance[msg.sender][spender] = amount;
         emit Approval(msg.sender, spender, amount);
         return true;
