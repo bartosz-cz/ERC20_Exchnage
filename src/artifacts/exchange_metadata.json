@@ -49,6 +49,86 @@
 				"type": "event"
 			},
 			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "tokenAddress",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "requestor",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "enum exchange.RequestTypes",
+						"name": "Type",
+						"type": "uint8"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "tokenPrice",
+						"type": "uint256"
+					}
+				],
+				"name": "RequestCreated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "tokenAddress",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "requestor",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "counterparty",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "enum exchange.RequestTypes",
+						"name": "Type",
+						"type": "uint8"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "tokenPrice",
+						"type": "uint256"
+					}
+				],
+				"name": "RequestExecuted",
+				"type": "event"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "address",
@@ -129,6 +209,43 @@
 						"internalType": "address",
 						"name": "",
 						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "priceMismatchEthFees",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "priceMismatchTokenFees",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -283,11 +400,11 @@
 			]
 		},
 		"src/exchange.sol": {
-			"keccak256": "0x34220ae2f052256e2f37be6d5c8d0dec3c862c60b350cdb30b30345220a365ca",
+			"keccak256": "0x9428c19504a621ccb4f02243ec94218566ef8fd300ef786531e4a122ec57f379",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://e776704541e01b8f41197453eca82b0bfac2b9bb11dcff3566810237c6469bb6",
-				"dweb:/ipfs/QmY4byVKCTU4hmA89hs1RNU2sdMcP6w7RN5czVRA36Y3eg"
+				"bzz-raw://42d2f7e2f4b12e9e048b3ee6134ee81dfecc5d0d5e5522f848de5c78983fe448",
+				"dweb:/ipfs/QmdknDxXa53Vx5WiqRiuCWjsdMVmEDeiy8PR9Ru6PaCWnT"
 			]
 		}
 	},
