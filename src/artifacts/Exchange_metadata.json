@@ -145,17 +145,22 @@
 					},
 					{
 						"internalType": "uint256",
+						"name": "index",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
 						"name": "amount",
 						"type": "uint256"
 					},
 					{
 						"internalType": "uint256",
-						"name": "coinPrice",
+						"name": "tokenPrice",
 						"type": "uint256"
 					},
 					{
 						"internalType": "enum Exchange.RequestTypes",
-						"name": "Type",
+						"name": "TYPE",
 						"type": "uint8"
 					}
 				],
@@ -211,7 +216,7 @@
 			},
 			{
 				"inputs": [],
-				"name": "claimPriceMismatchEthFees",
+				"name": "cancelRequest",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -269,19 +274,6 @@
 						"internalType": "address",
 						"name": "",
 						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "priceMismatchEthFees",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -363,11 +355,11 @@
 	},
 	"sources": {
 		"src/Exchange.sol": {
-			"keccak256": "0xc6fe674ed3efe74c60e5df73136442edc2db223ed55bd355bfdc0a7302116477",
+			"keccak256": "0xf16737b754998480528999071e0ed7e62a77a46b4fce404e738677d5b5fc6756",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://ab5eb45c17ed878e072c6dead834319e5e0ebf8cf180fae023c70021d679d1e8",
-				"dweb:/ipfs/QmX9mC7TJmVKZh1wPbqxRovHARFV5tjkFaKtpsYkFUSxRM"
+				"bzz-raw://f7011e7cc8bf43d9f960b323da558a5356077c1002abc2f6731cb36ab9784dfb",
+				"dweb:/ipfs/QmXqsSgEitGMfkq3a8svyp2Y8MqfNL6R3tqfF5Pe8Cywav"
 			]
 		},
 		"src/IERC20.sol": {

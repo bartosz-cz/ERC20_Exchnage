@@ -1,33 +1,101 @@
 {
-  "name": "Exchange",
-  "address": "0xE8b1f2C808892667Ac66b55C01bE559E3B15C48D",
+  "name": "solt",
+  "address": "0x7C4e30a43ecC4d3231b5B07ed082329020D141F3",
   "abi": [
     {
       "inputs": [
         {
           "internalType": "address",
-          "name": "coinAddress",
+          "name": "_owner",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "_name",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_symbol",
+          "type": "string"
+        },
+        {
+          "internalType": "uint8",
+          "name": "_decimals",
+          "type": "uint8"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_maxSupply",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "spender",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "value",
+          "type": "uint256"
+        }
+      ],
+      "name": "Approval",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "spender",
           "type": "address"
         },
         {
           "internalType": "uint256",
           "name": "amount",
           "type": "uint256"
-        },
-        {
-          "internalType": "uint256",
-          "name": "coinPrice",
-          "type": "uint256"
         }
       ],
-      "name": "buyRequest",
-      "outputs": [],
-      "stateMutability": "payable",
+      "name": "approve",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
       "type": "function"
     },
     {
-      "inputs": [],
-      "name": "claimPriceMismatchEthFees",
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "burn",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
@@ -49,12 +117,19 @@
       "inputs": [
         {
           "internalType": "address",
-          "name": "_owner",
+          "name": "to",
           "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
         }
       ],
+      "name": "mint",
+      "outputs": [],
       "stateMutability": "nonpayable",
-      "type": "constructor"
+      "type": "function"
     },
     {
       "anonymous": false,
@@ -62,11 +137,11 @@
         {
           "indexed": true,
           "internalType": "address",
-          "name": "newContractOwner",
+          "name": "newTokenOwner",
           "type": "address"
         }
       ],
-      "name": "ContractOwnershipTransferFinished",
+      "name": "TokenOwnershipTransferFinished",
       "type": "event"
     },
     {
@@ -85,18 +160,23 @@
           "type": "address"
         }
       ],
-      "name": "InitiatedOwnershipTransfer",
+      "name": "TokenOwnershipTransferStarted",
       "type": "event"
     },
     {
       "inputs": [
         {
           "internalType": "address",
-          "name": "_nextContractOwner",
+          "name": "recipient",
           "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
         }
       ],
-      "name": "initiateOwnershipTransfer",
+      "name": "transfer",
       "outputs": [
         {
           "internalType": "bool",
@@ -113,100 +193,70 @@
         {
           "indexed": true,
           "internalType": "address",
-          "name": "tokenAddress",
+          "name": "from",
           "type": "address"
         },
         {
           "indexed": true,
           "internalType": "address",
-          "name": "requestor",
+          "name": "to",
           "type": "address"
         },
         {
           "indexed": false,
-          "internalType": "enum Exchange.RequestTypes",
-          "name": "Type",
-          "type": "uint8"
-        },
-        {
-          "indexed": false,
           "internalType": "uint256",
-          "name": "amount",
-          "type": "uint256"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "tokenPrice",
+          "name": "value",
           "type": "uint256"
         }
       ],
-      "name": "RequestCreated",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "internalType": "address",
-          "name": "tokenAddress",
-          "type": "address"
-        },
-        {
-          "indexed": true,
-          "internalType": "address",
-          "name": "requestor",
-          "type": "address"
-        },
-        {
-          "indexed": true,
-          "internalType": "address",
-          "name": "counterparty",
-          "type": "address"
-        },
-        {
-          "indexed": false,
-          "internalType": "enum Exchange.RequestTypes",
-          "name": "Type",
-          "type": "uint8"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "amount",
-          "type": "uint256"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "tokenPrice",
-          "type": "uint256"
-        }
-      ],
-      "name": "RequestExecuted",
+      "name": "Transfer",
       "type": "event"
     },
     {
       "inputs": [
         {
           "internalType": "address",
-          "name": "tokenAddress",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "recipient",
           "type": "address"
         },
         {
           "internalType": "uint256",
           "name": "amount",
           "type": "uint256"
-        },
-        {
-          "internalType": "uint256",
-          "name": "coinPrice",
-          "type": "uint256"
         }
       ],
-      "name": "sellRequest",
-      "outputs": [],
+      "name": "transferFrom",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_nextTokenOwner",
+          "type": "address"
+        }
+      ],
+      "name": "transferTokenOwnership",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
       "stateMutability": "nonpayable",
       "type": "function"
     },
@@ -218,51 +268,12 @@
           "type": "address"
         },
         {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "name": "buyRequestants",
-      "outputs": [
-        {
           "internalType": "address",
           "name": "",
           "type": "address"
         }
       ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "contractOwner",
-      "outputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "nextContractOwner",
-      "outputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "priceMismatchEthFees",
+      "name": "allowance",
       "outputs": [
         {
           "internalType": "uint256",
@@ -281,26 +292,24 @@
           "type": "address"
         }
       ],
-      "name": "Requests",
+      "name": "balanceOf",
       "outputs": [
         {
-          "internalType": "address",
-          "name": "tokenAddress",
-          "type": "address"
-        },
-        {
           "internalType": "uint256",
-          "name": "amount",
+          "name": "",
           "type": "uint256"
-        },
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "decimals",
+      "outputs": [
         {
-          "internalType": "uint256",
-          "name": "coinPrice",
-          "type": "uint256"
-        },
-        {
-          "internalType": "enum Exchange.RequestTypes",
-          "name": "Type",
+          "internalType": "uint8",
+          "name": "",
           "type": "uint8"
         }
       ],
@@ -308,19 +317,34 @@
       "type": "function"
     },
     {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        },
+      "inputs": [],
+      "name": "maxSupply",
+      "outputs": [
         {
           "internalType": "uint256",
           "name": "",
           "type": "uint256"
         }
       ],
-      "name": "sellRequestants",
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "name",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "nextTokenOwner",
       "outputs": [
         {
           "internalType": "address",
@@ -330,8 +354,47 @@
       ],
       "stateMutability": "view",
       "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "symbol",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "tokenOwner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "totalSupply",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
     }
   ],
-  "filePath": "firstContrats.git/src/Exchange.sol",
-  "pinnedAt": 1717247986064
+  "filePath": "firstContrats.git/src/solt.sol",
+  "pinnedAt": 1717275313986
 }
