@@ -355,11 +355,11 @@
 	},
 	"sources": {
 		"src/Exchange.sol": {
-			"keccak256": "0xc3a91f85aaeff33d137e464b013451d647239c15937d103868063c1fc762a630",
+			"keccak256": "0x188e9b0d21224a59790b6a520e0ca4bac6a3658dda18383845c61022283fd7df",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://45b459aefb75e217f31ca32574add40c5e763f2348118a97afa2f4d9c292e892",
-				"dweb:/ipfs/QmWnQ6S7Zc8rwUaVbcdjVmudAYjXce2FiWHnjXHvX83vM6"
+				"bzz-raw://1174e914735931046d318d3e6e09a78da64f521a50635e8851cb3527b5f7fa91",
+				"dweb:/ipfs/QmRgVgsXNim1N8LJXWUDcHS6wsZgLa48MjU3fFyF88anHV"
 			]
 		},
 		"src/IERC20.sol": {

@@ -17,7 +17,7 @@ contract Exchange{
     // Mappings to store lists of users who have expressed interest in selling or buying tokens
     mapping(address => address[]) public sellRequestants;
     mapping(address => address[]) public buyRequestants; 
-    mapping(address => bool) private freeForOperation;
+    mapping(address => bool) private durringOperation;
   
     // Enumeration defining types of user requests
     enum RequestTypes{NONE,SELL, BUY}
@@ -37,43 +37,43 @@ contract Exchange{
     event RequestCreated(address indexed tokenAddress, address indexed requestor, RequestTypes Type, uint256 amount, uint256 tokenPrice);
     event RequestExecuted(address indexed tokenAddress, address indexed requestor, address indexed counterparty, RequestTypes Type, uint256 amount, uint256 tokenPrice);
 
-    modifier allowOnly(address _authorized){
-        require(msg.sender == _authorized, "Caller is not authorized");
+    modifier allowOnly(address authorized){
+        require(msg.sender == authorized, "Caller is not authorized");
         _;
     }
-    modifier enoughEther(uint256 _amount){
-        require(msg.value >= _amount);
+    modifier enoughEther(uint256 amount){
+        require(msg.value >= amount);
         _;
     }
-    modifier sufficientAllowance(address tokenAddress,uint256 _amount){
-        require(IERC20(tokenAddress).allowance(msg.sender, address(this)) >= _amount);
+    modifier sufficientAllowance(address tokenAddress,uint256 amount){
+        require(IERC20(tokenAddress).allowance(msg.sender, address(this)) >= amount);
         _;
     }
-    modifier sufficientBalance(address tokenAddress,uint256 _amount){
-        require(IERC20(tokenAddress).balanceOf(msg.sender) >= _amount);
+    modifier sufficientBalance(address tokenAddress,uint256 amount){
+        require(IERC20(tokenAddress).balanceOf(msg.sender) >= amount);
         _;
     }
     modifier noOtherRequests(){
          require(Requests[msg.sender].TYPE == RequestTypes.NONE);
          _;
     }
-    modifier nonZeroAddress(address _to){
-        require(address(0) != _to, "Transfer to the zero address is not allowed");
+    modifier nonZeroAddress(address to){
+        require(address(0) != to, "Transfer to the zero address is not allowed");
         _;
     }
-    modifier nonZeroAmount(uint256 _amount){
-        require(_amount != 0, "Amount must be greater than zero");
+    modifier nonZeroAmount(uint256 amount){
+        require(amount != 0, "Amount must be greater than zero");
         _;
     }
-    modifier nonZeroPrice(uint256 _amount){
-        require(_amount != 0, "Price must be greater than zero");
+    modifier nonZeroPrice(uint256 amount){
+        require(amount != 0, "Price must be greater than zero");
         _;
     }
     modifier noReentrancy(address tokenAddress){
-        require(freeForOperation[tokenAddress], "Operation on token in progress");
-        freeForOperation[tokenAddress] = false;
+        require(!durringOperation[tokenAddress], "Operation on token in progress");
+        durringOperation[tokenAddress] = true ;
         _;
-        freeForOperation[tokenAddress] = true;
+        durringOperation[tokenAddress] = false;
     }
 
 
@@ -103,7 +103,7 @@ contract Exchange{
         emit ContractOwnershipTransferFinished(contractOwner);
         return true;
     }
-  
+
     // External functions to place sell and buy requests
     function sellRequest(address tokenAddress, uint256 amount, uint256 coinPrice) external 
         noReentrancy(tokenAddress)
