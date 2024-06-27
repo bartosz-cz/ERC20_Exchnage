@@ -119,38 +119,6 @@
 				"type": "event"
 			},
 			{
-				"inputs": [],
-				"name": "ClaimTokenOwnership",
-				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "_nextTokenOwner",
-						"type": "address"
-					}
-				],
-				"name": "TransferTokenOwnership",
-				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
 				"inputs": [
 					{
 						"internalType": "address",
@@ -232,6 +200,19 @@
 				],
 				"name": "burn",
 				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "claimTokenOwnership",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
 				"stateMutability": "nonpayable",
 				"type": "function"
 			},
@@ -396,6 +377,25 @@
 				],
 				"stateMutability": "nonpayable",
 				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_nextTokenOwner",
+						"type": "address"
+					}
+				],
+				"name": "transferTokenOwnership",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
 			}
 		],
 		"devdoc": {
@@ -426,11 +426,11 @@
 	},
 	"sources": {
 		"src/ERC20.sol": {
-			"keccak256": "0x2b4dc8fc2719a3e12070cf0ebd2d9d4cef3ed8a8a0ed737f1420770f664c7020",
+			"keccak256": "0xa54b8d9235b41ecf40e280d18eb71c3833410106fbfada279df436b84dcf1d90",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://32f02208de20669a4d3e638c615cb5f22a52ba0d2a16041a506d89035afbddf1",
-				"dweb:/ipfs/QmXP9ykboPZw77riZsEKW6n8sjkRfLEesNiEPzeEioFGiY"
+				"bzz-raw://6bda2f6efd2b73000c09e004d4001d0b610c8d424e493cd8eb22a4cf3f070e53",
+				"dweb:/ipfs/QmTahdyx6fa6Msabrkn1iG3R1sMMFaZQ9wURqkAhBHQK6E"
 			]
 		},
 		"src/IERC20.sol": {

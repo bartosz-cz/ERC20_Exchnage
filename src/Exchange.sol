@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0
 
-pragma solidity >=0.8.2 <0.9.0;
+pragma solidity >=0.8.24 <0.9.0;
 
 import "./IERC20.sol";
 
@@ -16,7 +16,8 @@ contract Exchange{
 
     // Mappings to store lists of users who have expressed interest in selling or buying tokens
     mapping(address => address[]) public sellRequestants;
-    mapping(address => address[]) public buyRequestants;  
+    mapping(address => address[]) public buyRequestants; 
+    mapping(address => bool) private freeForOperation;
   
     // Enumeration defining types of user requests
     enum RequestTypes{NONE,SELL, BUY}
@@ -68,9 +69,16 @@ contract Exchange{
         require(_amount != 0, "Price must be greater than zero");
         _;
     }
+    modifier noReentrancy(address tokenAddress){
+        require(freeForOperation[tokenAddress], "Operation on token in progress");
+        freeForOperation[tokenAddress] = false;
+        _;
+        freeForOperation[tokenAddress] = true;
+    }
+
 
     // Constructor initializes the contract owner and sets initial fees.
-    constructor(address _owner){
+    constructor(address _owner) nonZeroAddress(_owner){
         contractOwner = _owner;
     }
 
@@ -98,6 +106,7 @@ contract Exchange{
   
     // External functions to place sell and buy requests
     function sellRequest(address tokenAddress, uint256 amount, uint256 coinPrice) external 
+        noReentrancy(tokenAddress)
         noOtherRequests()
         nonZeroAmount(amount)
         nonZeroPrice(coinPrice)
@@ -109,24 +118,30 @@ contract Exchange{
         matchRequests(tokenAddress, amount, coinPrice, RequestTypes.SELL); 
     }
 
-    function buyRequest(address coinAddress, uint256 amount, uint256 coinPrice) external payable 
+    function buyRequest(address tokenAddress, uint256 amount, uint256 coinPrice) external payable 
+        noReentrancy(tokenAddress)
         noOtherRequests()
         nonZeroAmount(amount)
         nonZeroPrice(coinPrice)
         enoughEther(amount*coinPrice)
     {
-        if(msg.value > amount*coinPrice) sendEther(payable(msg.sender), msg.value - amount*coinPrice);
         Requests[msg.sender].TYPE = RequestTypes.BUY;
-        matchRequests(coinAddress, amount, coinPrice, RequestTypes.BUY);
+        if(msg.value > amount*coinPrice) sendEther(payable(msg.sender), msg.value - amount*coinPrice);
+        matchRequests(tokenAddress, amount, coinPrice, RequestTypes.BUY);
     }
 
-    function cancelRequest() external{
+    function cancelRequest() external 
+          noReentrancy(Requests[msg.sender].tokenAddress)
+    {
         require(Requests[msg.sender].TYPE != RequestTypes.NONE,"No requests to cancel");
-        UserRequest memory _Request = Requests[msg.sender];
-        if(_Request.TYPE == RequestTypes.SELL){
-            IERC20(_Request.tokenAddress).transfer(msg.sender,_Request.amount);
+        require(Requests[msg.sender].amount != 0,"You cannot cancel multiple times");
+        UserRequest memory Request = Requests[msg.sender];
+        uint256 _amount = Request.amount;
+        Requests[msg.sender].amount = 0;
+        if(Request.TYPE == RequestTypes.SELL){
+            if(!IERC20(Request.tokenAddress).transfer(msg.sender,_amount)) revert("Token transfer back to requestor failed");
         }else{
-            sendEther(payable(msg.sender), _Request.amount*_Request.tokenPrice);
+            sendEther(payable(msg.sender), _amount*Request.tokenPrice);
         }
         removeRequest(msg.sender);
     }

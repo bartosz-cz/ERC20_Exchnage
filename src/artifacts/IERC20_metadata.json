@@ -167,11 +167,11 @@
 	},
 	"sources": {
 		"src/IERC20.sol": {
-			"keccak256": "0xfab643e530b33b59174035f863d14b4608aa5e1449af89f44aecd6ca4c6014e5",
+			"keccak256": "0xf0c6ca116d300b8de122661dc64c7170cbc27db45831dc5b0b2161b169a5c7ca",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://3ab96d792d50aed775dbb6add05f59ddbb45496dda1c66b44e1d71943b7f851d",
-				"dweb:/ipfs/QmWVbqWvPdf1TShbKjj64KZt9dabF6HH9B6UNv13o6ceGf"
+				"bzz-raw://2872f9b54aaaeb35587d3261949aad0c0bc667f84d9c6adb299d86f19e70bbbc",
+				"dweb:/ipfs/Qmao2rZPYP2D1ArVvEKtzWM5Pf61k2GCtroPg8ooBpHF8S"
 			]
 		}
 	},

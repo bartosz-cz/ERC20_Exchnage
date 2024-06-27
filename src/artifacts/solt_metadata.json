@@ -426,27 +426,27 @@
 	},
 	"sources": {
 		"src/ERC20.sol": {
-			"keccak256": "0xcc9835f5abfcf8d7a072ea2aeeacb06f31c0bc69b5743281a7953b3fcf22d1b6",
+			"keccak256": "0x3ca490cb55ecaf2562dcaeffb195c62fe78a51757490bfc1711e1b586d0290a2",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://9373bc3e28865a3a7f0d9e40d763e89a70c8b447093555341af4861d512c25fb",
-				"dweb:/ipfs/QmaU9USXLGXiuzpPM762E5CoDBjB3yxp2m5S6EzjedsLjX"
+				"bzz-raw://02d4e8625ca59a1171be5f12a999ad8cf2e91a91d8d77bd1c3aed79be0451cf2",
+				"dweb:/ipfs/QmfGbB35LjG282UPEykHUAzhoU6qsW76aTSw3pXSNfZbjD"
 			]
 		},
 		"src/IERC20.sol": {
-			"keccak256": "0xfab643e530b33b59174035f863d14b4608aa5e1449af89f44aecd6ca4c6014e5",
+			"keccak256": "0xf0c6ca116d300b8de122661dc64c7170cbc27db45831dc5b0b2161b169a5c7ca",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://3ab96d792d50aed775dbb6add05f59ddbb45496dda1c66b44e1d71943b7f851d",
-				"dweb:/ipfs/QmWVbqWvPdf1TShbKjj64KZt9dabF6HH9B6UNv13o6ceGf"
+				"bzz-raw://2872f9b54aaaeb35587d3261949aad0c0bc667f84d9c6adb299d86f19e70bbbc",
+				"dweb:/ipfs/Qmao2rZPYP2D1ArVvEKtzWM5Pf61k2GCtroPg8ooBpHF8S"
 			]
 		},
 		"src/solt.sol": {
-			"keccak256": "0xe6e46993334987893f986d2a2799f287ad155f40aa3cc682c0770eb265a9bb6d",
+			"keccak256": "0x0a4c77d1a8846087fb13d5abf452512613f4e655e14610aef1d05a0f74bd5003",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://796419f08adfaf627d8c07ab0fa575819d8829a7bc9bdf9fdc76fc3f53982ddf",
-				"dweb:/ipfs/QmNPTCD8p9xrJmRmfcTgvHMkjtuSVq5wXtBmzq5vieJfoo"
+				"bzz-raw://901828c8d16fbff59f7d3b490276790ea06e92d3ec6d042ec35cf030e530d711",
+				"dweb:/ipfs/QmQGdPTCVZ8MhbgjcSdQNguCYzj8es3NN7isdaCfVF2Y4n"
 			]
 		}
 	},
