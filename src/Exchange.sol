@@ -107,9 +107,9 @@ contract Exchange{
     // External functions to place sell and buy requests
     function sellRequest(address tokenAddress, uint256 amount, uint256 coinPrice) external 
         noReentrancy(tokenAddress)
-        noOtherRequests()
         nonZeroAmount(amount)
         nonZeroPrice(coinPrice)
+        noOtherRequests()
         sufficientAllowance(tokenAddress, amount)
         sufficientBalance(tokenAddress, amount)
     {
@@ -120,10 +120,10 @@ contract Exchange{
 
     function buyRequest(address tokenAddress, uint256 amount, uint256 coinPrice) external payable 
         noReentrancy(tokenAddress)
-        noOtherRequests()
         nonZeroAmount(amount)
         nonZeroPrice(coinPrice)
         enoughEther(amount*coinPrice)
+        noOtherRequests()
     {
         Requests[msg.sender].TYPE = RequestTypes.BUY;
         if(msg.value > amount*coinPrice) sendEther(payable(msg.sender), msg.value - amount*coinPrice);
@@ -134,31 +134,29 @@ contract Exchange{
           noReentrancy(Requests[msg.sender].tokenAddress)
     {
         require(Requests[msg.sender].TYPE != RequestTypes.NONE,"No requests to cancel");
-        require(Requests[msg.sender].amount != 0,"You cannot cancel multiple times");
         UserRequest memory Request = Requests[msg.sender];
         uint256 _amount = Request.amount;
-        Requests[msg.sender].amount = 0;
+        removeRequest(msg.sender,Request);
         if(Request.TYPE == RequestTypes.SELL){
             if(!IERC20(Request.tokenAddress).transfer(msg.sender,_amount)) revert("Token transfer back to requestor failed");
         }else{
             sendEther(payable(msg.sender), _amount*Request.tokenPrice);
         }
-        removeRequest(msg.sender);
     }
     
     // Finds requests that fulfill each other and calls executeRequests function for them
     function matchRequests(address tokenAddress, uint256 amount, uint256 tokenPrice, RequestTypes TYPE) private{
         address[] memory requestants = (TYPE==RequestTypes.SELL ? buyRequestants[tokenAddress] : sellRequestants[tokenAddress]);
-        uint256 amountLeft = amount;
+        UserRequest memory Request;
         for (uint256 i = requestants.length; i > 0; i--){
-            UserRequest memory Request = Requests[requestants[i-1]];
+            Request = Requests[requestants[i-1]];
             if(priceCheck(Request, tokenPrice)){
-                amountLeft = executeRequests(tokenAddress,requestants[i-1], amountLeft, tokenPrice);
-                if (amountLeft == 0) break;
+                amount = executeRequests(Request,requestants[i-1], amount, tokenPrice);
+                if (amount == 0) break;
             }
         }
-        if(amountLeft > 0){
-            addRequest(tokenAddress, amountLeft, tokenPrice, TYPE);
+        if(amount > 0){
+            addRequest(tokenAddress, amount, tokenPrice, TYPE);
         }else{
             Requests[msg.sender].TYPE = RequestTypes.NONE;   
         }
@@ -174,25 +172,24 @@ contract Exchange{
     }
 
     // Executes matched requests between users
-    function executeRequests(address tokenAddress, address counterparty, uint256 amount, uint256 tokenPrice) private returns(uint256){
-        UserRequest memory Request = Requests[counterparty];
+    function executeRequests(UserRequest memory Request,address counterparty, uint256 amount, uint256 tokenPrice) private returns(uint256){
         uint256 tradeAmount = amount < Request.amount ? amount : Request.amount;
-        if (Request.TYPE == RequestTypes.BUY) {
-            if(!IERC20(tokenAddress).transfer(counterparty, tradeAmount)) revert("Token transfer to buyer failed");
-            sendEther(payable(msg.sender),tradeAmount*Request.tokenPrice);
-            if(Request.tokenPrice > tokenPrice) sendEther(payable(counterparty), (Request.tokenPrice-tokenPrice)*tradeAmount);
-        }else{
-            if(!IERC20(tokenAddress).transfer(msg.sender, tradeAmount)) revert("Token transfer to buyer failed");
-            sendEther(payable(counterparty),tradeAmount*Request.tokenPrice);
-            if(Request.tokenPrice < tokenPrice) sendEther(payable(msg.sender), (tokenPrice-Request.tokenPrice)*tradeAmount);
-        }
         Request.amount -= tradeAmount;
         if (Request.amount == 0){
-            removeRequest(counterparty);
+            removeRequest(counterparty,Request);
         }else{
             Requests[counterparty].amount = Request.amount;
         }
-        emit RequestExecuted(tokenAddress, msg.sender, counterparty, Request.TYPE, tradeAmount, Request.tokenPrice);
+        if (Request.TYPE == RequestTypes.BUY) {
+            if(!IERC20(Request.tokenAddress).transfer(counterparty, tradeAmount)) revert("Token transfer to buyer failed");
+            sendEther(payable(msg.sender),tradeAmount*Request.tokenPrice);
+            if(Request.tokenPrice > tokenPrice) sendEther(payable(counterparty), (Request.tokenPrice-tokenPrice)*tradeAmount);
+        }else{
+            if(!IERC20(Request.tokenAddress).transfer(msg.sender, tradeAmount)) revert("Token transfer to buyer failed");
+            sendEther(payable(counterparty),tradeAmount*Request.tokenPrice);
+            if(Request.tokenPrice < tokenPrice) sendEther(payable(msg.sender), (tokenPrice-Request.tokenPrice)*tradeAmount);
+        }
+        emit RequestExecuted(Request.tokenAddress, msg.sender, counterparty, Request.TYPE, tradeAmount, Request.tokenPrice);
         return amount-=tradeAmount;
     }
 
@@ -211,8 +208,7 @@ contract Exchange{
     }
 
     // Removes a request after it's been fully fulfilled or cancelled
-    function removeRequest(address requestor) private {
-        UserRequest memory Request = Requests[requestor];
+    function removeRequest(address requestor,UserRequest memory Request) private {
         address[] storage requestants = (Request.TYPE==RequestTypes.SELL ? sellRequestants[Request.tokenAddress] : buyRequestants[Request.tokenAddress]);
         Requests[requestants[requestants.length - 1]].index = Request.index;
         requestants[Request.index] = requestants[requestants.length - 1];
