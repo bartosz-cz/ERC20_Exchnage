@@ -31,20 +31,3 @@ The `Exchange` contract provides several functions that users can interact with 
 
 - **`cancelRequest()`**: Enables users to cancel their outstanding buy or sell requests. This function checks the type of request and returns the locked tokens or Ether to the user if the request is still unfulfilled.
 
-
-## Getting Started
-
-### Prerequisites
-
-- [Node.js](https://nodejs.org/en/download/) and npm installed.
-- [Truffle Suite](https://www.trufflesuite.com/truffle) for compiling and deploying the contract.
-- [Ganache](https://www.trufflesuite.com/ganache) for a personal Ethereum blockchain to run tests.
-
-### Installation
-
-Clone this repository and install the necessary dependencies:
-
-```bash
-git clone https://github.com/yourusername/exchange-contract.git
-cd exchange-contract
-npm install
