@@ -1,0 +1,45 @@
+{
+	"compiler": {
+		"version": "0.8.25+commit.b61c2a91"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"src/tokenSwap.sol": "tokenSwap"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"src/tokenSwap.sol": {
+			"keccak256": "0x847ca7b80569ee49c2e7a04537761abdcad7fe8add3258acebd86c48d53cb535",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://32078bf4124635000173974e814a1515c4b4b21667e3a4e89cd30ac8e50baf39",
+				"dweb:/ipfs/QmbAngmfgSF9TNQPVUb95AEJngkDZygXseRYU7jWzfDyX6"
+			]
+		}
+	},
+	"version": 1
+}
