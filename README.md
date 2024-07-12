@@ -17,12 +17,20 @@ The `Exchange` contract incorporates several key elements:
 - **Request Management**: Users can initiate buy and sell requests which are managed and matched by the contract.
 - **Security Modifiers**: Includes several modifiers to ensure operations are performed by authorized users and under correct conditions.
 
-### Core Components
+### Core Functions
 
-- `contractOwner` and `nextContractOwner`: Manage current and prospective contract ownership.
-- `UserRequest`: Struct that stores details about user requests.
-- `Requests`: A mapping to keep track of each user's requests.
-- `sellRequestants` and `buyRequestants`: Track users interested in selling or buying tokens.
+The `Exchange` contract provides several functions that users can interact with to manage and execute token transactions:
+
+- **`initiateOwnershipTransfer(address _nextContractOwner)`**: Allows the current contract owner to initiate a transfer of ownership to a new owner. This function sets the `nextContractOwner` who will then need to accept the ownership.
+
+- **`claimTokenOwnership()`**: Used by the new owner to accept ownership of the contract. This function transfers the contract's ownership from the current owner to the new owner set by `initiateOwnershipTransfer`.
+
+- **`sellRequest(address tokenAddress, uint256 amount, uint256 coinPrice)`**: Allows users to create a request to sell a specified amount of tokens at a given price. This function registers the sell request and tries to match it with existing buy requests.
+
+- **`buyRequest(address tokenAddress, uint256 amount, uint256 coinPrice)`**: Similar to `sellRequest`, this function lets users place a request to buy tokens. It takes the token address, the amount of tokens to buy, and the price offered per token. The function locks in the Ether sent with the request and attempts to match with existing sell requests.
+
+- **`cancelRequest()`**: Enables users to cancel their outstanding buy or sell requests. This function checks the type of request and returns the locked tokens or Ether to the user if the request is still unfulfilled.
+
 
 ## Getting Started
 
